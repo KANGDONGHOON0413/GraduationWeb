@@ -1,0 +1,46 @@
+﻿@model GraduationWeb.Models.DB.TableUser
+
+<div class="col-md-8">
+    <form asp-controller="ManageUser" asp-action="UserRegister" method="post">
+        <div>
+            <label>
+                ID
+                <input type="text" asp-for="Id" placeholder="아이디" />
+            </label>
+        </div>
+        <div>
+            <span style="color : red" asp-validation-for="Id"></span>
+        </div>
+        <div>
+            <label>
+                Password
+                <input type="password" asp-for="Password" placeholder="비밀번호" />
+            </label>
+        </div>
+        <div>
+            <span style="color : red" asp-validation-for="Id"></span>
+        </div>
+        <div>
+            <label>
+                Full Name
+                <input type="text" asp-for="Name" placeholder="성명" />
+            </label>
+        </div>
+        <div>
+            <span style="color : red" asp-validation-for="Name"></span>
+        </div>
+        <div>
+            <label>
+                Phone
+                <input type="tel" asp-for="Phone" placeholder="전화번호" />
+            </label>
+        </div>
+        <div>
+            <span style="color : red" asp-validation-for="Phone"></span>
+        </div>
+        <div class="col-md-1">
+            <button class="btn btn-primary" type="submit">회원가입</button>
+        </div>
+    </form>
+
+</div>

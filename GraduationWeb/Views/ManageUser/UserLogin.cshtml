@@ -1,0 +1,32 @@
+﻿@model GraduationWeb.Models.ViewModels.LoginApproach
+
+<div class="col-md-8">
+    <form asp-controller="ManageUser" asp-action="UserLogin" method="post">
+        <div>
+            <div>
+                <label>
+                    아이디
+                    <input type="text" asp-for="ID" placeholder="ID" />
+                </label>
+            </div>
+            <div>
+                <span asp-validation-for="ID"></span>
+            </div>         
+        </div>
+        <div>
+            <div>
+                <label>
+                    비밀번호
+                    <input type="password" asp-for="Password" placeholder="PW" />
+                </label>
+            </div>
+            <div>
+                <span asp-validation-for="Password"></span>
+            </div>
+        </div>
+        <div>
+            <button class="btn-light" type="submit">로그인</button>
+        </div>
+
+    </form>
+</div>
