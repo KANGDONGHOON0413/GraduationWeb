@@ -47,7 +47,8 @@ namespace GraduationWeb.Controllers
                     var claims = new List<Claim>
                        {
                            new Claim(ClaimTypes.NameIdentifier, model.ID),
-                           new Claim(ClaimTypes.Name, UserName)
+                           new Claim(ClaimTypes.Name, model.ID),
+                           new Claim("PW",model.Password)
                        };
 
                     var ClaimsId = new ClaimsIdentity(claims, "Cookies");
