@@ -10,6 +10,8 @@ namespace GraduationWeb.Controllers
     {
         public IActionResult Index()
         {
+           // HttpContext.User.Identity.Name
+
             return View();
         }
 

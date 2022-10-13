@@ -1,6 +1,9 @@
 ﻿@model GraduationWeb.Models.DB.TableUser
 
 <div class="col-md-8">
+    <div>
+        <span style="color : red" >@ViewBag.errMsg</span>
+    </div>
     <form asp-controller="ManageUser" asp-action="UserRegister" method="post">
         <div>
             <label>

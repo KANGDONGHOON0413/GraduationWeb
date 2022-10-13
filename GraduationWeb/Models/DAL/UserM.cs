@@ -25,10 +25,10 @@ namespace GraduationWeb.Models.DAL
             try
             {
                 _context.Add(user);
-                _context.SaveChangesAsync();
+                _context.SaveChanges();
                 return true;
             }
-            catch
+            catch(Exception)
             {
                 return false;
             }
@@ -36,8 +36,16 @@ namespace GraduationWeb.Models.DAL
 
         public bool DeleteUser(TableUser user)
         {
-            throw new NotImplementedException();
-        }
+            try {
+                _context.Remove(user);
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+    }
 
         public TableUser GetUserInfo(TableUser user)
         {
@@ -49,11 +57,11 @@ namespace GraduationWeb.Models.DAL
             throw new NotImplementedException();
         }
 
-        public bool UserLoginCheck(LoginApproach user)
+        public string UserLoginCheck(LoginApproach user)
         {
             var UserCheck = _context.TableUser.FirstOrDefault(A => A.Id.Equals(user.ID) && A.Password.Equals(user.Password));
-            if (UserCheck != null) return true;
-            return false;
+            if (UserCheck != null) return UserCheck.Name;
+            return "";
         }
     }
 }

@@ -24,7 +24,11 @@ namespace GraduationWeb.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            if (User.Identity.IsAuthenticated)
+            {
+                return View();
+            }
+            return RedirectToAction("Index", "Home");
         }
 
         public IActionResult UserLogin()
@@ -37,11 +41,13 @@ namespace GraduationWeb.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (_context.UserLoginCheck(model))
+                string UserName = _context.UserLoginCheck(model);
+                if (!string.IsNullOrEmpty(UserName))
                 {
                     var claims = new List<Claim>
                        {
-                           new Claim(ClaimTypes.NameIdentifier, model.ID)
+                           new Claim(ClaimTypes.NameIdentifier, model.ID),
+                           new Claim(ClaimTypes.Name, UserName)
                        };
 
                     var ClaimsId = new ClaimsIdentity(claims, "Cookies");
@@ -81,7 +87,8 @@ namespace GraduationWeb.Controllers
                     await Response.WriteAsync("<script>alert('Register Success');</script>");
                     var claims = new List<Claim>
                        {
-                           new Claim(ClaimTypes.NameIdentifier, model.Id)
+                           new Claim(ClaimTypes.NameIdentifier, model.Id),
+                           new Claim(ClaimTypes.Name, model.Name)
                        };
 
                     var ClaimsId = new ClaimsIdentity(claims, "Cookies");

@@ -29,11 +29,10 @@ namespace GraduationWeb
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddAuthentication("Cookies").AddCookie();      // 요거하고 맞춰줘야한다.
-            services.AddSingleton<IConfiguration>(Configuration);
+              services.AddSingleton<IConfiguration>(Configuration);
             services.AddDbContext<_201984001dbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("_201984001dbContext")));
             services.AddTransient<I_UserM, UserM>();
-
+            services.AddAuthentication("Cookies").AddCookie(); //쿠키인증 활성화
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

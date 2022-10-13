@@ -18,6 +18,6 @@ namespace GraduationWeb.Models.IDAL
 
         bool UpdateUserInfo(TableUser user);
 
-        bool UserLoginCheck(LoginApproach user);
+        string UserLoginCheck(LoginApproach user);
     }
 }
