@@ -10,6 +10,7 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using GraduationWeb.Models.DB;
 using GraduationWeb.Models.IDAL;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GraduationWeb.Controllers
 {
@@ -22,13 +23,12 @@ namespace GraduationWeb.Controllers
             _context = context;
         }
 
+        [Authorize]
         public IActionResult Index()
         {
-            if (User.Identity.IsAuthenticated)
-            {
-                return View();
-            }
-            return RedirectToAction("Index", "Home");
+            string id = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier).ToString();
+            ViewBag.MyInfo = _context.GetUserInfo(id);
+            return View();
         }
 
         public IActionResult UserLogin()
@@ -70,6 +70,16 @@ namespace GraduationWeb.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [Authorize]
+        public async Task<IActionResult> DeleteUser()
+        {
+            string id = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier).ToString();
+            ViewBag.MyInfo = _context.DeleteUser(id);
+            await HttpContext.SignOutAsync("Cookies");
+            return RedirectToAction("Index", "Home");
+        }
+
+
         public IActionResult UserRegister()
         {
             return View();
@@ -81,15 +91,15 @@ namespace GraduationWeb.Controllers
             if (ModelState.IsValid)
             {
                 try
-                {
-                   
+                {                  
                     if (!_context.AddNewUser(model)) throw new Exception("이미 존재하는 아이디이거나 연결에 오류가 있습니다");
 
                     await Response.WriteAsync("<script>alert('Register Success');</script>");
                     var claims = new List<Claim>
                        {
                            new Claim(ClaimTypes.NameIdentifier, model.Id),
-                           new Claim(ClaimTypes.Name, model.Name)
+                           new Claim(ClaimTypes.Name, model.Name),
+                            new Claim("PW",model.Password)
                        };
 
                     var ClaimsId = new ClaimsIdentity(claims, "Cookies");

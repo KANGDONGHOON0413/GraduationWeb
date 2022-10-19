@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace GraduationWeb.Controllers
@@ -12,10 +13,10 @@ namespace GraduationWeb.Controllers
     {
         [Authorize]
         public IActionResult Index()
-        {          
+        {
+            var temp = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            ViewBag.name = temp;
             return View();
-        }
-
-        
+        }    
     }
 }

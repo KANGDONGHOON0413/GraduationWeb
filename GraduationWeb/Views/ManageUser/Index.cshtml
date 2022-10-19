@@ -1,23 +1,51 @@
-﻿<div class="cardBox">
-    <div class="card"></div>
-    <div class="card"></div>
-    <div class="card"></div>
-</div>
+﻿@using System.Security.Claims;
+@model GraduationWeb.Models.DB.TableUser
 
-<div class="layer">
-    <div class="tablegroup1">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>주문 번호</th>
-                    <th>물품 이름</th>
-                    <th>물품 개수</th>
-                </tr>
-            </thead>
-            <tbody>
-            </tbody>
-        </table>
+<form class="myInfo" asp-controller="ManageUser" asp-action="UpdateUser" method="post">
+    <div>
+        <h1>ID: @ViewBag.MyInfo.Id</h1>
     </div>
-</div>
+    <div>
+        <label>
+            Name
+            <input type="text" placeholder="이름" asp-for="Name" value=@ViewBag.MyInfo.Name />
+            <span asp-validation-for="Name"></span>
+        </label>
+    </div>
+    <div>
+        <label>
+            Password
+            <input type="password" placeholder="비밀번호" asp-for="Password" />
+            <span asp-validation-for="Password"></span>
+        </label>
+    </div>
+    <div>
+        <label>
+            Phone
+            <input type="tel" placeholder="전화번호" asp-for="Phone" value=@ViewBag.MyInfo.Phone />
+            <span asp-validation-for="Phone"></span>
+        </label>
+    </div>
+    <div>
+        <label>
+            Address
+            <input type="text" placeholder="주소" asp-for="Address" value=@ViewBag.MyInfo.Address />
+            <span asp-validation-for="Address"></span>
+        </label>
+    </div>
+    <div>
+        <label>
+            Email
+            <input type="text" placeholder="이메일" asp-for="Email" value=@ViewBag.MyInfo.Email />
+            <span asp-validation-for="Email"></span>
+        </label>
+    </div>
+    <div>
+        <button class="btn btn-primary" type="submit">정보 갱신</button>
 
-<div></div>
+    </div>
+</form>
+
+<form class="deleteUser" asp-controller="ManageUser" asp-action="DeleteUser" method="post">
+    <button class="btn btn-danger" type="submit">계정 탈퇴</button>
+</form>

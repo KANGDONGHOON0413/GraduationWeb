@@ -10,11 +10,11 @@ namespace GraduationWeb.Models.IDAL
 {
     public interface I_UserM
     {
-        TableUser GetUserInfo(TableUser user);
+        TableUser GetUserInfo(string user);
 
         bool AddNewUser(TableUser user);
 
-        bool DeleteUser(TableUser user);
+        bool DeleteUser(string user);
 
         bool UpdateUserInfo(TableUser user);
 

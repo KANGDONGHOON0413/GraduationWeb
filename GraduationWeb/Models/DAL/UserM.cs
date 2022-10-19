@@ -34,10 +34,10 @@ namespace GraduationWeb.Models.DAL
             }
         }
 
-        public bool DeleteUser(TableUser user)
+        public bool DeleteUser(string user)
         {
             try {
-                _context.Remove(user);
+                _context.TableUser.Remove(_context.TableUser.FirstOrDefault(A => A.Id.Equals(user)));
                 _context.SaveChanges();
                 return true;
             }
@@ -47,9 +47,10 @@ namespace GraduationWeb.Models.DAL
             }
     }
 
-        public TableUser GetUserInfo(TableUser user)
+        public TableUser GetUserInfo(string userID)
         {
-            throw new NotImplementedException();
+            TableUser userinfo = _context.TableUser.FirstOrDefault(A => A.Id.Equals(userID));
+            return userinfo;
         }
 
         public bool UpdateUserInfo(TableUser user)
