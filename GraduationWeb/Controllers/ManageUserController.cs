@@ -47,7 +47,7 @@ namespace GraduationWeb.Controllers
                     var claims = new List<Claim>
                        {
                            new Claim(ClaimTypes.NameIdentifier, model.ID),
-                           new Claim(ClaimTypes.Name, model.ID),
+                           new Claim(ClaimTypes.Name, UserName),
                            new Claim("PW",model.Password)
                        };
 
@@ -94,7 +94,7 @@ namespace GraduationWeb.Controllers
                 {                  
                     if (!_context.AddNewUser(model)) throw new Exception("이미 존재하는 아이디이거나 연결에 오류가 있습니다");
 
-                    await Response.WriteAsync("<script>alert('Register Success');</script>");
+                   
                     var claims = new List<Claim>
                        {
                            new Claim(ClaimTypes.NameIdentifier, model.Id),
@@ -109,7 +109,7 @@ namespace GraduationWeb.Controllers
                         "Cookies", Claimsprincipal, new AuthenticationProperties { IsPersistent = false }
                         );
 
-                    return RedirectToAction("Index", "MainPage");
+                    return RedirectToAction("WellcomePage", "ManageUser");
                 }
                 catch(Exception exc)
                 {
@@ -117,6 +117,11 @@ namespace GraduationWeb.Controllers
                 }
             }
            return View(model);
+        }
+
+        public IActionResult WellcomePage()
+        {
+            return View();
         }
 
     }
