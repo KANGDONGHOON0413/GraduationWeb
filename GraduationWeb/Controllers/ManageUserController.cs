@@ -72,7 +72,7 @@ namespace GraduationWeb.Controllers
 
         [Authorize]
         public async Task<IActionResult> DeleteUser()
-        {
+        {          
             string id = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier).ToString();
             ViewBag.MyInfo = _context.DeleteUser(id);
             await HttpContext.SignOutAsync("Cookies");
@@ -91,15 +91,15 @@ namespace GraduationWeb.Controllers
             if (ModelState.IsValid)
             {
                 try
-                {                  
+                {
                     if (!_context.AddNewUser(model)) throw new Exception("이미 존재하는 아이디이거나 연결에 오류가 있습니다");
 
-                   
+
                     var claims = new List<Claim>
                        {
                            new Claim(ClaimTypes.NameIdentifier, model.Id),
                            new Claim(ClaimTypes.Name, model.Name),
-                            new Claim("PW",model.Password)
+                           new Claim("PW",model.Password)
                        };
 
                     var ClaimsId = new ClaimsIdentity(claims, "Cookies");
@@ -111,12 +111,12 @@ namespace GraduationWeb.Controllers
 
                     return RedirectToAction("WellcomePage", "ManageUser");
                 }
-                catch(Exception exc)
+                catch (Exception exc)
                 {
                     ViewBag.errMsg = exc.Message;
                 }
             }
-           return View(model);
+            return View(model);
         }
 
         public IActionResult WellcomePage()
