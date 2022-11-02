@@ -48,3 +48,41 @@
 <form class="deleteUser" asp-controller="ManageUser" asp-action="DeleteUser" method="post">
     <button class="btn btn-danger" type="submit">계정 탈퇴</button>
 </form>
+
+
+
+
+@*요걸 포함 시켜줘야 한다. 포함하는 방법은 wwwroot/lib/bootstrap/dist/css에서 끌어오기로 한다.*@
+<script src="~/lib/jquery/dist/jquery.js"></script>
+
+
+<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#Check">
+    계정 삭제
+</button>
+
+
+<div class="modal fade" id="Check" role="dialog">
+    <div class="modal-dialog">
+        <!--Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">계정을 삭제하시겠습니까?</h3>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body" style="text-align : center">
+                <a href="/ManageUser/DeleteUser" class="btn btn-primary">계정탈퇴</a>
+                <button type="button" data-dismiss="modal">취소</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<button id="BTNcheck" type="button">하이</button>
+<script>
+    $(function () {
+        $("#BTNcheck").click(function () {
+            alert("하이");
+        });
+    });
+</script>
