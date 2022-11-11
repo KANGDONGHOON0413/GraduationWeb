@@ -1,9 +1,10 @@
 ﻿@using System.Security.Claims;
 @model GraduationWeb.Models.DB.TableUser
 
-<form class="myInfo" asp-controller="ManageUser" asp-action="UpdateUser" method="post">
+<form class="myInfo" asp-controller="ManageUser" asp-action="Index" method="post">
     <div>
-        <h1>ID: @ViewBag.MyInfo.Id</h1>
+        <h1>ID: </h1>
+        
     </div>
     <div>
         <label>
@@ -40,16 +41,10 @@
             <span asp-validation-for="Email"></span>
         </label>
     </div>
-    <div>
-        <button class="btn btn-primary" type="submit">정보 갱신</button>
-    </div>
+    
+    <button class="btn btn-primary" type="submit">정보 갱신</button>
+
 </form>
-
-<form class="deleteUser" asp-controller="ManageUser" asp-action="DeleteUser" method="post">
-    <button class="btn btn-danger" type="submit">계정 탈퇴</button>
-</form>
-
-
 
 
 @*요걸 포함 시켜줘야 한다. 포함하는 방법은 wwwroot/lib/bootstrap/dist/css에서 끌어오기로 한다.*@

@@ -31,6 +31,18 @@ namespace GraduationWeb.Controllers
             return View();
         }
 
+        [Authorize]
+        [HttpPost]
+        public IActionResult Index(TableUser model)
+        {
+            model.Id = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier).ToString();
+            bool ckup = _context.UpdateUserInfo(model);
+
+            ViewBag.MyInfo = _context.GetUserInfo(model.Id);
+            return View();
+        }
+
+
         public IActionResult UserLogin()
         {
             return View();

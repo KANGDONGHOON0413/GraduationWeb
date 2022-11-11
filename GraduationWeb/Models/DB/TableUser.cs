@@ -14,13 +14,13 @@ namespace GraduationWeb.Models.DB
         {
             TableSell = new HashSet<TableSell>();
         }
-        [Required]
+        [Required(ErrorMessage ="ID를 입력해주세요.")]
         public string Id { get; set; }
-        [Required]
+        [Required(ErrorMessage = "PW를 입력해주세요.")]
         public string Password { get; set; }
-        [Required]
+        [Required(ErrorMessage = "이름을 입력해주세요.")]
         public string Name { get; set; }
-        [Required]
+        [Required(ErrorMessage = "전화번호를 입력해주세요.")]
         public string Phone { get; set; }
         public byte[] Image { get; set; }
         public string Address { get; set; }

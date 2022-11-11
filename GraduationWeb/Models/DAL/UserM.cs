@@ -55,7 +55,20 @@ namespace GraduationWeb.Models.DAL
 
         public bool UpdateUserInfo(TableUser user)
         {
-            throw new NotImplementedException();
+            TableUser changedItems = (from Items in _context.TableUser
+                                      where Items.Id.Equals(user.Id)
+                                      select Items).Single();
+            if (user.Name != null) changedItems.Name = user.Name;
+            if (!string.IsNullOrEmpty(user.Password))
+            {
+                if(user.Password.Length >5)
+                changedItems.Password = user.Password;        
+            }
+            if (user.Phone.Length >= 8) changedItems.Phone = user.Phone;
+
+            _context.SaveChanges();
+            
+            return true;
         }
 
         public string UserLoginCheck(LoginApproach user)
