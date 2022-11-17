@@ -1,13 +1,27 @@
 ﻿@using System.Security.Claims;
 @model GraduationWeb.Models.DB.TableUser
 
-<form class="myInfo" asp-controller="ManageUser" asp-action="Index" method="post">
+@*요걸 포함 시켜줘야 한다. 포함하는 방법은 wwwroot/lib/bootstrap/dist/css에서 끌어오기로 한다.*@
+<script src="~/lib/jquery/dist/jquery.js"></script>
+
+<form class="myInfo" asp-controller="ManageUser" asp-action="Index" method="post" style="text-align: center">
     <div>
-        <h1>ID: </h1>
-        
+        <h1>ID: @Context.User.FindFirstValue(ClaimTypes.NameIdentifier)</h1>
     </div>
     <div>
-        <label>
+        <div class="d-flex justify-content-center mb-4">
+            <img runat="server" id="image" 
+                 class="rounded-circle" alt="example placeholder" style="width: 200px;" />
+        </div>
+        <div class="d-flex justify-content-center">
+            <div class="btn btn-primary btn-rounded">
+                <label class="form-label text-white m-1" for="customFile2">ProfileImage Update</label>
+                <input type="file" class="form-control d-none" id="customFile2" />
+            </div>
+        </div>
+    </div>
+    <div>
+        <label style="margin: 10px 0px 5px 0px">
             Name
             <input type="text" placeholder="이름" asp-for="Name" value=@ViewBag.MyInfo.Name />
             <span asp-validation-for="Name"></span>
@@ -41,19 +55,17 @@
             <span asp-validation-for="Email"></span>
         </label>
     </div>
-    
-    <button class="btn btn-primary" type="submit">정보 갱신</button>
+
+    <button class="btn btn-primary" type="submit" style="margin: 10px 5%; ">정보 갱신</button>
+    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#Check"style="margin: 10px 5%; ">
+        계정 삭제
+    </button>
 
 </form>
 
 
-@*요걸 포함 시켜줘야 한다. 포함하는 방법은 wwwroot/lib/bootstrap/dist/css에서 끌어오기로 한다.*@
-<script src="~/lib/jquery/dist/jquery.js"></script>
 
 
-<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#Check">
-    계정 삭제
-</button>
 
 
 <div class="modal fade" id="Check" role="dialog">
