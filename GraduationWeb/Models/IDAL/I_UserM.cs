@@ -16,7 +16,7 @@ namespace GraduationWeb.Models.IDAL
 
         bool DeleteUser(string user);
 
-        bool UpdateUserInfo(TableUser user);
+        bool UpdateUserInfo(UpdateUserInfoVM user);
 
         string UserLoginCheck(LoginApproach user);
     }

@@ -1,24 +1,15 @@
 ﻿@using System.Security.Claims;
-@model GraduationWeb.Models.DB.TableUser
+@model GraduationWeb.Models.ViewModels.UpdateUserInfoVM
 
 @*요걸 포함 시켜줘야 한다. 포함하는 방법은 wwwroot/lib/bootstrap/dist/css에서 끌어오기로 한다.*@
 <script src="~/lib/jquery/dist/jquery.js"></script>
 
-<form class="myInfo" asp-controller="ManageUser" asp-action="Index" method="post" style="text-align: center">
+<form class="myInfo" asp-controller="ManageUser" asp-action="Index" method="post" style="text-align: center" enctype="multipart/form-data">
     <div>
         <h1>ID: @Context.User.FindFirstValue(ClaimTypes.NameIdentifier)</h1>
     </div>
     <div>
-        <div class="d-flex justify-content-center mb-4">
-            <img runat="server" id="image" 
-                 class="rounded-circle" alt="example placeholder" style="width: 200px;" />
-        </div>
-        <div class="d-flex justify-content-center">
-            <div class="btn btn-primary btn-rounded">
-                <label class="form-label text-white m-1" for="customFile2">ProfileImage Update</label>
-                <input type="file" class="form-control d-none" id="customFile2" />
-            </div>
-        </div>
+        <input asp-for="FormFile" type="file" class="form-control" />
     </div>
     <div>
         <label style="margin: 10px 0px 5px 0px">

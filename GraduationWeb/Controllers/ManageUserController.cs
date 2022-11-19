@@ -11,6 +11,9 @@ using Microsoft.AspNetCore.Authentication;
 using GraduationWeb.Models.DB;
 using GraduationWeb.Models.IDAL;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using GraduationWeb.Models.ViewModels.FileVM;
+using System.IO;
 
 namespace GraduationWeb.Controllers
 {
@@ -23,6 +26,9 @@ namespace GraduationWeb.Controllers
             _context = context;
         }
 
+        [BindProperty]  //이미지 저장을 위한 단계
+        public FileViewModel FileUpload { get; set; }
+
         [Authorize]
         public IActionResult Index()
         {
@@ -33,12 +39,20 @@ namespace GraduationWeb.Controllers
 
         [Authorize]
         [HttpPost]
-        public IActionResult Index(TableUser model)
+        public IActionResult Index(UpdateUserInfoVM model)
         {
             model.Id = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier).ToString();
+
+            using (var ms = new MemoryStream())
+            {
+                FileUpload.FormFile.CopyTo(ms);
+                model.Image = ms.ToArray();
+            }
             bool ckup = _context.UpdateUserInfo(model);
 
+
             ViewBag.MyInfo = _context.GetUserInfo(model.Id);
+ 
             return View();
         }
 
@@ -75,6 +89,7 @@ namespace GraduationWeb.Controllers
             return View(model);
         }
 
+        [Authorize]
         public async Task<IActionResult> UserLogout()
         {
             await HttpContext.SignOutAsync("Cookies");

@@ -1,13 +1,8 @@
 ﻿using GraduationWeb.Models.DB;
 using GraduationWeb.Models.IDAL;
 using GraduationWeb.Models.ViewModels;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Http;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
 
 namespace GraduationWeb.Models.DAL
 {
@@ -15,7 +10,7 @@ namespace GraduationWeb.Models.DAL
     {
         private readonly _201984001dbContext _context;
 
-        public UserM(_201984001dbContext context)
+        public UserM(_201984001dbContext context )
         {
             _context = context;
         }
@@ -53,7 +48,7 @@ namespace GraduationWeb.Models.DAL
             return userinfo;
         }
 
-        public bool UpdateUserInfo(TableUser user)
+        public bool UpdateUserInfo(UpdateUserInfoVM user)
         {
             TableUser changedItems = (from Items in _context.TableUser
                                       where Items.Id.Equals(user.Id)
@@ -65,7 +60,10 @@ namespace GraduationWeb.Models.DAL
                 changedItems.Password = user.Password;        
             }
             if (user.Phone.Length >= 8) changedItems.Phone = user.Phone;
-
+            if(user.Image.Length > 0)
+            {
+                changedItems.Image = user.Image;
+            }
             _context.SaveChanges();
             
             return true;
