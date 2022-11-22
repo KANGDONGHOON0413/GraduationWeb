@@ -6,7 +6,57 @@
     <span style="color : red">@User.Identity.Name</span>
 
     <p>@ViewBag.name</p>
-
-
+    <link href="~/css/LoginHomeStyle.css" rel="stylesheet" />
+    <div>
+        <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+            <div class="col">
+                <a href="/OrderPage/Index" class="card mb-4 rounded-3 shadow-sm cardItems">
+                    <div class="card-header py-3">
+                        <h4 class="my-0 fw-normal">Buy</h4>
+                    </div>
+                    <div class="card-body"style="background-color: aqua;">                       
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li>10 users included</li>
+                            <li>2 GB of storage</li>
+                            <li>Email support</li>
+                            <li>Help center access</li>
+                        </ul>
+                       </div>
+                </a>
+            </div>
+            <div class="col">
+                <a href="/SellPage/Index" class="card mb-4 rounded-3 shadow-sm cardItems">
+                    <div class="card-header py-3">
+                        <h4 class="my-0 fw-normal">Sell</h4>
+                    </div>
+                    <div class="card-body" style="background-color: lightpink">
+                         <ul class="list-unstyled mt-3 mb-4">
+                            <li>20 users included</li>
+                            <li>10 GB of storage</li>
+                            <li>Priority email support</li>
+                            <li>Help center access</li>
+                        </ul>
+                       </div>
+                </a>
+            </div>
+            <div class="col">
+                <a  href="/Home/Index"class="card mb-4 rounded-3 shadow-sm border-primary cardItems">
+                    <div class="card-header py-3 text-bg-primary border-primary">
+                        <h4 class="my-0 fw-normal">Receipt</h4>
+                    </div>
+                    <div class="card-body" style=" background-color:aquamarine">
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li>30 users included</li>
+                            <li>15 GB of storage</li>
+                            <li>Phone and email support</li>
+                            <li>Help center access</li>
+                        </ul>                        
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
    
+    
+
 </div>
