@@ -8,13 +8,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace GraduationWeb.Models.DB
 {
-    public partial class _201984001dbContext : DbContext
+    public partial class TableManager : DbContext
     {
-        public _201984001dbContext()
+        public TableManager()
         {
         }
 
-        public _201984001dbContext(DbContextOptions<_201984001dbContext> options)
+        public TableManager(DbContextOptions<TableManager> options)
             : base(options)
         {
         }

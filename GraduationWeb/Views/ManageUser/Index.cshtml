@@ -12,44 +12,45 @@
         <img src="data:image;base64, @Convert.ToBase64String(ViewBag.MyInfo.Image)" style="width : 30%; height : 30%;"/>
     </div>
     <div>
-        <input asp-for="FormFile" type="file" style="width : 300px;"/>
+        <input class="btn btn-primary" asp-for="FormFile" type="file" style="width : 300px;"/>
     </div>
     <div>
-        <label style="margin: 10px 0px 5px 0px">
-            Name
-            <input type="text" placeholder="이름" asp-for="Name" value=@ViewBag.MyInfo.Name />
-            <span asp-validation-for="Name"></span>
-        </label>
+        <div>
+            <label style="margin: 10px 0px 5px 0px">
+                Name
+                <input type="text" placeholder="이름" asp-for="Name" value=@ViewBag.MyInfo.Name />
+                <span asp-validation-for="Name"></span>
+            </label>
+        </div>
+        <div>
+            <label>
+                Password
+                <input type="password" placeholder="비밀번호" asp-for="Password" />
+                <span asp-validation-for="Password"></span>
+            </label>
+        </div>
+        <div>
+            <label>
+                Phone
+                <input type="tel" placeholder="전화번호" asp-for="Phone" value=@ViewBag.MyInfo.Phone />
+                <span asp-validation-for="Phone"></span>
+            </label>
+        </div>
+        <div>
+            <label>
+                Address
+                <input type="text" placeholder="주소" asp-for="Address" value=@ViewBag.MyInfo.Address />
+                <span asp-validation-for="Address"></span>
+            </label>
+        </div>
+        <div>
+            <label>
+                Email
+                <input type="text" placeholder="이메일" asp-for="Email" value=@ViewBag.MyInfo.Email />
+                <span asp-validation-for="Email"></span>
+            </label>
+        </div>
     </div>
-    <div>
-        <label>
-            Password
-            <input type="password" placeholder="비밀번호" asp-for="Password" />
-            <span asp-validation-for="Password"></span>
-        </label>
-    </div>
-    <div>
-        <label>
-            Phone
-            <input type="tel" placeholder="전화번호" asp-for="Phone" value=@ViewBag.MyInfo.Phone />
-            <span asp-validation-for="Phone"></span>
-        </label>
-    </div>
-    <div>
-        <label>
-            Address
-            <input type="text" placeholder="주소" asp-for="Address" value=@ViewBag.MyInfo.Address />
-            <span asp-validation-for="Address"></span>
-        </label>
-    </div>
-    <div>
-        <label>
-            Email
-            <input type="text" placeholder="이메일" asp-for="Email" value=@ViewBag.MyInfo.Email />
-            <span asp-validation-for="Email"></span>
-        </label>
-    </div>
-
     <button class="btn btn-primary" type="submit" style="margin: 10px 5%; ">정보 갱신</button>
     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#Check"style="margin: 10px 5%; ">
         계정 삭제

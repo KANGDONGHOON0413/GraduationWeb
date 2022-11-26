@@ -34,15 +34,7 @@ namespace GraduationWeb.Controllers
             string id = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier).ToString();
             var temp = _context.GetUserInfo(id);
             ViewBag.MyInfo = temp;
-            //IFormFile temp3;
-            //using (var ms = new MemoryStream())
-            //{
-            //    foreach(var i in temp.Image)
-            //    {
-            //        m
-            //    }
-            //}
-
+          
             return View();
         }
 
@@ -57,6 +49,7 @@ namespace GraduationWeb.Controllers
                 FileUpload.FormFile.CopyTo(ms);
                 model.Image = ms.ToArray();
             }
+            model.FormFile = null;
             bool ckup = _context.UpdateUserInfo(model);
 
 

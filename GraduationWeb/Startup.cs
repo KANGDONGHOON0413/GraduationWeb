@@ -30,8 +30,9 @@ namespace GraduationWeb
         {
             services.AddControllersWithViews();
             services.AddSingleton<IConfiguration>(Configuration);
-            services.AddDbContext<_201984001dbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("_201984001dbContext")));
+            services.AddDbContext<Models.DB.TableManager>(options => options.UseSqlServer(Configuration.GetConnectionString("_201984001dbContext")));
             services.AddTransient<I_UserM, UserM>();
+            services.AddTransient<I_ProductM, ProductM>();
             services.AddAuthentication("Cookies").AddCookie(options =>
             {
                 options.LoginPath = "/ManageUser/UserLogin/";

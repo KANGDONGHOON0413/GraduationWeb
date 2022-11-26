@@ -8,9 +8,9 @@ namespace GraduationWeb.Models.DAL
 {
     public class UserM : I_UserM
     {
-        private readonly _201984001dbContext _context;
+        private readonly DB.TableManager _context;
 
-        public UserM(_201984001dbContext context )
+        public UserM(DB.TableManager context )
         {
             _context = context;
         }

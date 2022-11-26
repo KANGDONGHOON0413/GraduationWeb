@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace GraduationWeb.Models.DAL
 {
-    public class ProductM : I_ProductM
+    public class ProductM : IDAL.I_ProductM
     {
-        private readonly _201984001dbContext _context;
+        private readonly DB.TableManager _context;
 
-        public ProductM(_201984001dbContext context)
+        public ProductM(DB.TableManager context)
         {
             _context = context;
         }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GraduationWeb.Models.IDAL
 {
-    interface I_ProductM
+    public interface I_ProductM
     {
         string InputProduct(TableSell items);
         string UpdateProduct(TableSell items);

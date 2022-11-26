@@ -13,9 +13,9 @@ namespace GraduationWeb.Models.DAL
 {
     public class OrderM : I_OrderM
     {
-        private readonly _201984001dbContext _context;
+        private readonly DB.TableManager _context;
 
-        public OrderM(_201984001dbContext context)
+        public OrderM(DB.TableManager context)
         {
             _context = context;
         }
