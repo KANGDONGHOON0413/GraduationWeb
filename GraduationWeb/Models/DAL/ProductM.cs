@@ -1,6 +1,7 @@
 ﻿using GraduationWeb.Models.DB;
 using GraduationWeb.Models.IDAL;
 using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,7 +54,15 @@ namespace GraduationWeb.Models.DAL
             return "물품이 판매리스트에 추가되었습니다.";
         }
 
-        public List<TableSell> ShowProduct(string userId)
+        public List<TableSell> ShowAllProduct(int pageNum)
+        {
+            int pgnum = 40 * (pageNum - 1);
+            List<TableSell> query = _context.TableSell.Select(A => A).Skip(pgnum).Take(40).ToList();
+           
+            return query;
+        }
+
+        public List<TableSell> ShowMyProduct(string userId)
         {
             List<TableSell> sells = (List<TableSell>)_context.TableSell.Select(A => A.SellerId.Equals(userId));
 

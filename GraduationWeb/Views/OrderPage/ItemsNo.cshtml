@@ -1,0 +1,55 @@
+﻿
+
+<link href="~/css/ItemsNoStyle.css" rel="stylesheet" />
+
+<div class="row" style="text-align: center">
+    <div class="col-md-6 col-sm-12">
+
+        <div>
+            <img src="data:image;base64, @Convert.ToBase64String(ViewBag.item.Image)" style=" max-width: 200px; max-height:200px;" />
+        </div>
+    </div>
+    <div class="col-md-6 col-sm-12">
+
+        <div>
+            <div>
+                <h1>@ViewBag.item.ProductName</h1>
+            </div>
+            <hr />
+            <div>
+                <label>
+                    Product Price: @ViewBag.item.ProductPrice Won
+                </label>
+
+                <label style="margin-left: 50px">
+                    Product Stock: @ViewBag.item.ProductNum
+                </label>
+            </div>
+            <div>
+                <label>
+                    Seller Id: @ViewBag.item.SellerId
+                </label>
+            </div>
+            <div>
+                <label>
+                    Product Description:
+                </label>
+            </div>
+            <hr />
+            <p style="border: 50px">
+                @ViewBag.item.ProductDescription
+            </p>
+        </div>
+    </div>
+</div>
+
+
+
+<form asp-controller="OrderPage" asp-action="MakeOrder">
+    <label>
+        Product
+    </label>
+
+
+
+</form>

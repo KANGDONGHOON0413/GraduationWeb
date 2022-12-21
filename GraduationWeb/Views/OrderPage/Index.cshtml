@@ -11,10 +11,28 @@
                 <tr>
                     <th>주문 번호</th>
                     <th>물품 이름</th>
+                    <th>물품 가격</th>
                     <th>물품 개수</th>
                 </tr>
             </thead>
             <tbody>
+                @foreach(var i in ViewBag.itemsList)
+                {
+                <tr>                
+                    <td>
+                        @i.SellNum
+                    </td>
+                    <td>
+                        @i.ProductName
+                    </td>
+                    <td>
+                        @i.ProductPrice
+                    </td>
+                    <td>
+                        @i.ProductNum
+                    </td>
+                </tr>
+                }
             </tbody>
         </table>
     </div>

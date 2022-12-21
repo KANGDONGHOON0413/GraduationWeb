@@ -11,6 +11,9 @@ namespace GraduationWeb.Models.IDAL
         string InputProduct(TableSell items);
         string UpdateProduct(TableSell items);
         string DeleteProduct(int itemId);
-        List<TableSell> ShowProduct(string userId);
+        List<TableSell> ShowMyProduct(string userId);
+
+        List<TableSell> ShowAllProduct(int pageNum);
+
     }
 }

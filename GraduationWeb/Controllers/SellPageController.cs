@@ -29,6 +29,7 @@ namespace GraduationWeb.Controllers
         [HttpPost]
         public IActionResult Index(TableSellVM model)
         {
+            if (!ModelState.IsValid) return View(model);
 
             TableSell items = new TableSell();
             items.ProductName = model.ProductName;
